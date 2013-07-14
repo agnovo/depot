@@ -1,6 +1,10 @@
 class Cart < ActiveRecord::Base
   has_many :line_items,:dependent=>:destroy
   
+  def total_item
+    line_items.sum(:quantity)
+  end
+  
   def total_price
     #line_items.to_a.sum{|itme| item.total_price }
     total=0
